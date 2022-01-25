@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
     def create
-        user = User.new(
+        users = User.new(
             firstName: params[:firstName],
             lastname: params[:lastname],
             email: params[:email],
@@ -13,16 +13,16 @@ class Api::V1::UsersController < ApplicationController
             bio: params[:bio],
         )
         if users.save
-            render json: user, status: 200
+            render json: users, status: 200
         else
             render json: { errors: "Error creating review." }, status: 422
         end
     end
 
   def show
-    user = User.find_by(id: params[:id])
-    if user
-      render json: user, status: 200
+    users = User.find_by(id: params[:id])
+    if users
+      render json: users, status: 200
     else
       render json: { errors: "user not found." }, status: 404
     end
@@ -30,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 
   private
     def prod_params
-        params.require(:user).permit([
+        params.require(:users).permit([
             :firstName,
             :lastname,
             :email,

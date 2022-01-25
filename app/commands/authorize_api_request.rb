@@ -14,7 +14,7 @@ class AuthorizeApiRequest
   attr_reader :headers
 
   def admin
-    @admin ||= admin.find(decoded_auth_token[:admin_id]) if decoded_auth_token
+    @admin ||= Admin.find(decoded_auth_token[:admin_id]) if decoded_auth_token
     @admin || errors.add(:token, 'Invalid token') && nil
   end
 
