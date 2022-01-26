@@ -7,7 +7,7 @@ skip_before_action :authenticate_request, only: [:create]
   end
 
   #login as user
-  def authenticate
+  def login
     command = AuthenticateUser.call(params[:email], params[:password])
 
     if command.success?
@@ -16,7 +16,7 @@ skip_before_action :authenticate_request, only: [:create]
       render json: { error: command.errors }, status: :unauthorized
     end
   end
-end
+
 
     def create
         users = User.new(
