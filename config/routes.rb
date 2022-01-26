@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   end
 
    post 'authenticate', to: 'authentication#authenticate'
-    
+    #login route
+    post 'login', to: 'authentication#login'
 end
